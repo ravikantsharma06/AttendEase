@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AttendEase - smart attendance tracker and bunk calculator for college students.">
+  <title>AttendEase | Smart Attendance Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="AttendEase home">
+        <span class="brand-icon">A</span><span>Attend<span class="brand-highlight">Ease</span></span>
+      </a>
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="navigation" aria-label="Main navigation">
+        <button class="nav-link active" data-page="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-link" data-page="subjects"><span>▤</span> My Subjects</button>
+        <button class="nav-link" data-page="calculator"><span>％</span> Bunk Calculator</button>
+        <button class="nav-link" data-page="analytics"><span>▥</span> Analytics</button>
+        <button class="nav-link" data-page="calendar"><span>▦</span> Attendance Calendar</button>
+        <button class="nav-link" data-page="timetable"><span>◷</span> Timetable</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip"><span class="tip-icon">✦</span><h4>Stay consistent!</h4><p>Small steps every day lead to great results.</p></div>
+        <button class="nav-link theme-toggle" id="themeToggle"><span id="themeIcon">☾</span><span id="themeText">Dark mode</span></button>
+        <div class="sidebar-footer">AttendEase v1.0 <span>Made for students ♥</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+          <div><p class="eyebrow">YOUR STUDENT WORKSPACE</p><h2 id="pageTitle">Dashboard</h2></div>
+        </div>
+        <div class="topbar-right">
+          <div class="date-display"><span>▦</span><span id="currentDate"></span></div>
+          <button class="icon-button" id="downloadReport" title="Print or save report as PDF" aria-label="Download report">⇩</button>
+          <button class="profile-avatar" id="profileAvatar" title="Edit profile">S</button>
+        </div>
+      </header>
+
+      <section class="page active" id="dashboard">
+        <div class="welcome-section">
+          <div><p class="eyebrow">HERE'S YOUR PROGRESS</p><h1>Hey, <span id="studentGreeting">Student</span>! <span class="wave">✦</span></h1><p class="muted">A little consistency today makes a big difference tomorrow.</p></div>
+          <button class="primary-button" id="quickMarkBtn">＋ Mark attendance</button>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card purple-card"><div class="stat-top"><span>Overall attendance</span><span class="stat-icon">％</span></div><h2 id="overallPercentage">0%</h2><p id="overallStatus">No attendance recorded yet</p></article>
+          <article class="stat-card"><div class="stat-top"><span>Total classes</span><span class="stat-icon lavender">▤</span></div><h2 id="totalClasses">0</h2><p>Conducted classes</p></article>
+          <article class="stat-card"><div class="stat-top"><span>Classes attended</span><span class="stat-icon mint">✓</span></div><h2 id="attendedClasses">0</h2><p>Present classes</p></article>
+          <article class="stat-card"><div class="stat-top"><span>Safe bunks</span><span class="stat-icon peach">☕</span></div><h2 id="safeBunks">—</h2><p>At your overall target</p></article>
+        </div>
+        <div class="dashboard-grid">
+          <article class="content-card"><div class="card-heading"><div><h3>Subject overview</h3><p>Your subject-wise attendance progress</p></div><button class="text-button" data-goto="subjects">View all →</button></div><div id="dashboardSubjects" class="subject-list"><div class="empty-state">No subjects added yet. Add your first subject to begin.</div></div></article>
+          <article class="content-card"><div class="card-heading"><div><h3>Attendance summary</h3><p>Present vs absent classes</p></div></div><div class="chart-wrapper chart-small"><canvas id="overviewChart" aria-label="Attendance summary chart"></canvas></div><div class="chart-legend"><span><i class="legend-dot present-dot"></i> Present</span><span><i class="legend-dot absent-dot"></i> Absent</span></div></article>
+        </div>
+        <article class="content-card recent-card"><div class="card-heading"><div><h3>Recent attendance</h3><p>Your latest class records</p></div><button class="text-button" data-goto="calendar">View calendar →</button></div><div class="table-responsive"><table><thead><tr><th>Subject</th><th>Date</th><th>Status</th></tr></thead><tbody id="recentAttendance"><tr><td colspan="3" class="empty-cell">No attendance records yet.</td></tr></tbody></table></div></article>
+      </section>
+
+      <section class="page" id="subjects">
+        <div class="page-intro"><div><p class="eyebrow">YOUR ACADEMICS</p><h1>My subjects</h1><p class="muted">Add subjects and keep track of every class.</p></div><button class="primary-button" id="addSubjectBtn">＋ Add subject</button></div>
+        <div class="subject-cards" id="allSubjects"></div>
+      </section>
+
+      <section class="page" id="calculator">
+        <div class="page-intro"><div><p class="eyebrow">PLAN SMARTER</p><h1>Smart bunk calculator</h1><p class="muted">Know how many classes you can miss—or need to attend.</p></div></div>
+        <div class="calculator-grid">
+          <article class="content-card calculator-card"><div class="calculator-heading"><span class="large-icon lavender">％</span><div><h3>Overall calculator</h3><p>Based on all conducted classes</p></div></div><div class="calculator-result"><span>Current attendance</span><h2 id="calcOverallPercentage">0%</h2></div><div class="calc-info"><div><span>Total classes</span><strong id="calcTotalClasses">0</strong></div><div><span>Attended</span><strong id="calcAttendedClasses">0</strong></div></div><label for="overallTarget">Required attendance (%)</label><input id="overallTarget" type="number" value="75" min="1" max="100"><div class="result-box" id="overallBunkResult">Add attendance records to calculate safe bunks.</div></article>
+          <article class="content-card calculator-card"><div class="calculator-heading"><span class="large-icon peach">▤</span><div><h3>Subject-wise calculator</h3><p>Check a particular subject</p></div></div><label for="calculatorSubject">Select subject</label><select id="calculatorSubject"><option value="">Choose subject</option></select><div class="calculator-result"><span>Subject attendance</span><h2 id="calcSubjectPercentage">0%</h2></div><div class="calc-info"><div><span>Conducted</span><strong id="calcSubjectTotal">0</strong></div><div><span>Attended</span><strong id="calcSubjectAttended">0</strong></div></div><div class="result-box" id="subjectBunkResult">Select a subject to calculate safe bunks.</div></article>
+        </div>
+        <article class="content-card target-card"><div class="calculator-heading"><span class="large-icon mint">◎</span><div><h3>Attendance recovery calculator</h3><p>How many consecutive classes do you need to attend to reach your target?</p></div></div><label for="recoverySubject">Select subject</label><select id="recoverySubject"><option value="">Choose subject</option></select><div class="result-box" id="recoveryResult">Select a subject to calculate your recovery plan.</div></article>
+      </section>
+
+      <section class="page" id="analytics">
+        <div class="page-intro"><div><p class="eyebrow">KNOW YOUR NUMBERS</p><h1>Attendance analytics</h1><p class="muted">Visualize your academic attendance performance.</p></div><button class="secondary-button" id="analyticsDownload">⇩ Print report / Save PDF</button></div>
+        <div class="analytics-grid">
+          <article class="content-card"><div class="card-heading"><div><h3>Subject performance</h3><p>Attendance percentage by subject</p></div></div><div class="chart-wrapper"><canvas id="subjectChart"></canvas></div></article>
+          <article class="content-card"><div class="card-heading"><div><h3>Attendance distribution</h3><p>Present and absent classes</p></div></div><div class="chart-wrapper"><canvas id="distributionChart"></canvas></div></article>
+          <article class="content-card full-chart"><div class="card-heading"><div><h3>Attendance trends</h3><p>Classes marked over the last 14 days</p></div></div><div class="chart-wrapper"><canvas id="trendChart"></canvas></div></article>
+        </div>
+      </section>
+
+      <section class="page" id="calendar">
+        <div class="page-intro"><div><p class="eyebrow">YOUR CLASS HISTORY</p><h1>Attendance calendar</h1><p class="muted">Select a date to see the classes recorded on that day.</p></div></div>
+        <article class="content-card calendar-card"><div class="calendar-heading"><button class="icon-button" id="prevMonth" aria-label="Previous month">←</button><h2 id="calendarMonth">Month Year</h2><button class="icon-button" id="nextMonth" aria-label="Next month">→</button></div><div class="calendar-grid" id="calendarGrid"><div class="calendar-day-name">Sun</div><div class="calendar-day-name">Mon</div><div class="calendar-day-name">Tue</div><div class="calendar-day-name">Wed</div><div class="calendar-day-name">Thu</div><div class="calendar-day-name">Fri</div><div class="calendar-day-name">Sat</div></div><div class="calendar-legend"><span><i class="legend-dot present-dot"></i> Present</span><span><i class="legend-dot absent-dot"></i> Absent</span><span><i class="legend-dot cancelled-dot"></i> Cancelled</span></div><div id="calendarDetails" class="calendar-details">Select a date to view its attendance records.</div></article>
+      </section>
+
+      <section class="page" id="timetable">
+        <div class="page-intro"><div><p class="eyebrow">PLAN YOUR WEEK</p><h1>My timetable</h1><p class="muted">Organize your weekly class schedule.</p></div><button class="primary-button" id="addTimetableBtn">＋ Add class</button></div>
+        <article class="content-card"><div class="card-heading"><div><h3>Weekly schedule</h3><p>Your subject-wise class timings</p></div></div><div class="table-responsive"><table><thead><tr><th>Day</th><th>Subject</th><th>Start</th><th>End</th><th>Room</th><th>Action</th></tr></thead><tbody id="timetableBody"><tr><td colspan="6" class="empty-cell">No timetable added yet.</td></tr></tbody></table></div></article>
+      </section>
+
+      <footer class="main-footer">© <span id="year"></span> AttendEase <span>Made with care for college students ♥</span></footer>
+    </main>
+  </div>
+
+  <!-- First-visit profile setup and profile editor -->
+  <div class="modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
+    <div class="modal-content profile-modal-content"><div class="profile-welcome-icon">✦</div><h2 id="profileModalTitle">Welcome to AttendEase!</h2><p>Set up your local student profile to personalize your dashboard.</p><form id="profileForm"><label for="studentName">Your name</label><input id="studentName" type="text" placeholder="e.g. Rahul Sharma" maxlength="50" required><label for="studentCollege">College name <span class="optional">(optional)</span></label><input id="studentCollege" type="text" placeholder="Your college" maxlength="100"><label for="studentCourse">Course / branch <span class="optional">(optional)</span></label><input id="studentCourse" type="text" placeholder="e.g. B.Tech CSE" maxlength="50"><div class="modal-actions"><button type="button" class="secondary-button hidden" id="cancelProfile">Cancel</button><button type="submit" class="primary-button" id="profileSubmit">Get started →</button></div></form><p class="privacy-note">Your data is saved only in this browser on this device. This is not a secure login account.</p></div>
+  </div>
+
+  <div class="modal hidden" id="subjectModal" role="dialog" aria-modal="true" aria-labelledby="subjectModalTitle"><div class="modal-content"><div class="modal-heading"><h2 id="subjectModalTitle">Add new subject</h2><button class="icon-button close-modal" data-close="subjectModal" aria-label="Close">×</button></div><form id="subjectForm"><label for="subjectName">Subject name</label><input id="subjectName" required maxlength="50" placeholder="e.g. Mathematics"><label for="subjectCode">Subject code <span class="optional">(optional)</span></label><input id="subjectCode" maxlength="20" placeholder="e.g. MTH201"><label for="subjectTarget">Required attendance (%)</label><input id="subjectTarget" type="number" value="75" min="1" max="100" required><label for="subjectColor">Subject color</label><select id="subjectColor"><option value="#7966d9">Purple</option><option value="#299d81">Green</option><option value="#e69b35">Orange</option><option value="#3985d8">Blue</option><option value="#dc6480">Pink</option></select><div class="modal-actions"><button type="button" class="secondary-button close-modal" data-close="subjectModal">Cancel</button><button type="submit" class="primary-button">Save subject</button></div></form></div></div>
+
+  <div class="modal hidden" id="attendanceModal" role="dialog" aria-modal="true" aria-labelledby="attendanceModalTitle"><div class="modal-content"><div class="modal-heading"><h2 id="attendanceModalTitle">Mark attendance</h2><button class="icon-button close-modal" data-close="attendanceModal" aria-label="Close">×</button></div><form id="attendanceForm"><label for="attendanceSubject">Subject</label><select id="attendanceSubject" required><option value="">Choose subject</option></select><label for="attendanceDate">Class date</label><input type="date" id="attendanceDate" required><label for="attendanceStatus">Status</label><select id="attendanceStatus" required><option value="Present">Present</option><option value="Absent">Absent</option><option value="Cancelled">Cancelled</option></select><p class="form-hint">One record per subject per date. Saving an existing date updates that record.</p><div class="modal-actions"><button type="button" class="secondary-button close-modal" data-close="attendanceModal">Cancel</button><button type="submit" class="primary-button">Save attendance</button></div></form></div></div>
+
+  <div class="modal hidden" id="timetableModal" role="dialog" aria-modal="true" aria-labelledby="timetableModalTitle"><div class="modal-content"><div class="modal-heading"><h2 id="timetableModalTitle">Add timetable class</h2><button class="icon-button close-modal" data-close="timetableModal" aria-label="Close">×</button></div><form id="timetableForm"><label for="timetableSubject">Subject</label><select id="timetableSubject" required><option value="">Choose subject</option></select><label for="timetableDay">Day</label><select id="timetableDay" required><option value="">Choose day</option><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select><div class="form-row"><div><label for="startTime">Start time</label><input type="time" id="startTime" required></div><div><label for="endTime">End time</label><input type="time" id="endTime" required></div></div><label for="classRoom">Room / location <span class="optional">(optional)</span></label><input id="classRoom" placeholder="e.g. Lab 3" maxlength="30"><div class="modal-actions"><button type="button" class="secondary-button close-modal" data-close="timetableModal">Cancel</button><button type="submit" class="primary-button">Save class</button></div></form></div></div>
+
+  <div class="modal hidden" id="dayModal" role="dialog" aria-modal="true" aria-labelledby="dayModalTitle"><div class="modal-content"><div class="modal-heading"><h2 id="dayModalTitle">Attendance details</h2><button class="icon-button close-modal" data-close="dayModal" aria-label="Close">×</button></div><div id="dayModalContent"></div></div></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

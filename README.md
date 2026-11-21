@@ -93,71 +93,6 @@ It also includes a built-in chatbot assistant that helps users understand the ap
 
 No frontend framework, backend, database, or external JavaScript package is required.
 
----
-
-## 📁 Project Structure
-
-```text
-AttendEase/
-│
-├── index.html       # Main website structure
-├── style.css        # Main website styling
-├── script.js        # Core application logic
-├── chatbot.js       # Chatbot functionality
-├── chatbot.css      # Chatbot styling
-└── README.md        # Project documentation
-```
-
----
-
-## ⚙️ Getting Started
-
-Follow these steps to run AttendEase on your local machine.
-
-### Prerequisites
-- A modern web browser.
-- Visual Studio Code (recommended).
-- Live Server extension for VS Code (recommended).
-
-### Installation
-
-**Step 1: Clone the repository**
-
-```bash
-git clone https://github.com/YOUR-USERNAME/AttendEase.git
-```
-
-**Step 2: Open the project folder**
-
-```bash
-cd AttendEase
-```
-
-**Step 3: Open the project in VS Code**
-
-```bash
-code .
-```
-
-Alternatively, download the repository as a ZIP file and extract it.
-
-**Step 4: Run the application**
-
-Open `index.html` using the Live Server extension in VS Code.
-
-You can also open the HTML file directly in a modern browser.
-
-**Step 5: Set up your profile**
-
-- Enter your student name.
-- Add your college and course details if desired.
-- Add your subjects.
-- Start marking attendance.
-
-Your dashboard is now ready to use!
-
----
-
 ## 💾 Data Storage
 
 AttendEase uses the browser's built-in **LocalStorage** to save application data.
@@ -209,18 +144,6 @@ It can answer questions related to:
 The chatbot is designed to work without an API key or backend server.
 
 **Future Scope:** Integration with a generative AI API through a secure backend or serverless function can make the chatbot capable of answering more open-ended questions. Private API keys must never be exposed in frontend JavaScript.
-
----
-
-## 🌐 Deployment
-
-AttendEase is a static website and can be deployed using GitHub Pages, Vercel, or other static hosting platforms.
-
-### GitHub
-
-1. Create a new repository on GitHub.
-2. Upload all six project files to the repository's root directory.
-3. Commit and push your changes.
 
 ### Vercel
 

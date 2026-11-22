@@ -4,8 +4,6 @@
 
 It also includes a built-in chatbot assistant that helps users understand the application's features and provides attendance-related information using their locally saved data.
 
----
-
 ## 🚀 Features
 
 ### 1. Student Dashboard
@@ -78,8 +76,6 @@ It also includes a built-in chatbot assistant that helps users understand the ap
 
 **Note:** The chatbot currently uses predefined responses and keyword-based matching. It is a frontend FAQ assistant, not a live generative AI chatbot.
 
----
-
 ## 🛠️ Technologies Used
 
 | Technology | Purpose |
@@ -117,8 +113,6 @@ The following information is stored locally:
 
 Avoid storing sensitive personal information.
 
----
-
 ## 🤖 How the Chatbot Works
 
 The AttendEase chatbot is a lightweight JavaScript-based assistant.
@@ -146,20 +140,7 @@ The chatbot is designed to work without an API key or backend server.
 **Future Scope:** Integration with a generative AI API through a secure backend or serverless function can make the chatbot capable of answering more open-ended questions. Private API keys must never be exposed in frontend JavaScript.
 
 ### Vercel
-
-1. Visit [Vercel](https://vercel.com/).
-2. Sign in using your GitHub account.
-3. Select **Add New Project**.
-4. Import the AttendEase GitHub repository.
-5. Set Framework Preset to **Other**.
-6. Leave the Build Command empty.
-7. Set Output Directory to `.` if required.
-8. Click **Deploy**.
-
-Your AttendEase website will be live after deployment.
-
----
-
+Visit: (https://smartattendancemanager-peach.vercel.app/)
 ## 🔮 Future Improvements
 
 Possible improvements for future versions include:
@@ -174,7 +155,6 @@ Possible improvements for future versions include:
 - Progressive Web App (PWA) support.
 - Multiple student profiles.
 
----
 
 ## 🎯 Project Objective
 
@@ -182,7 +162,6 @@ The main objective of AttendEase is to simplify attendance tracking for college 
 
 Instead of manually calculating attendance percentages and safe bunks, students can use one dashboard to manage their subjects, monitor attendance, view analytics, and plan their academic schedule.
 
----
 
 ## 👨‍💻 Author
 
@@ -191,16 +170,7 @@ Instead of manually calculating attendance percentages and safe bunks, students 
 Project Name: AttendEase  
 Category: Web Development  
 Project Type: Student Attendance Management System  
-Technologies: HTML, CSS, Vanilla JavaScript
+Technologies: HTML, CSS, JavaScript
 
----
-
-## 📄 License
-
-This project is created for educational and learning purposes.
-
-You may modify and improve the source code for personal and educational use.
-
----
 
 **AttendEase – Track Smart. Attend Better. Stay Ahead. 💜**
